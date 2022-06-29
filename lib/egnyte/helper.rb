@@ -34,7 +34,7 @@ module Egnyte
     end
 
     def self.encode_url(url)
-      CGI.escape(url).gsub("[","%5B").gsub("]","%5D")
+      ERB::Util.url_encode(url)
     end
 
   end
