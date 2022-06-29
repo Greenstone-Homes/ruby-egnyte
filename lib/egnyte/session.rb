@@ -70,53 +70,53 @@ module Egnyte
     end
 
     def get(url, return_parsed_response=true)
-      uri = URI.parse(Egnyte::Helper.encode_url(url))
-      request = Net::HTTP::Get.new( uri.request_uri )
+      uri = URI.parse(url)
+      request = Net::HTTP::Get.new( uri )
       resp = request( uri, request, return_parsed_response )
     end
 
     def delete(url, return_parsed_response=true)
-      uri = URI.parse(Egnyte::Helper.encode_url(url))
-      request = Net::HTTP::Delete.new( uri.request_uri )
+      uri = URI.parse(url)
+      request = Net::HTTP::Delete.new( uri )
       resp = request( uri, request, return_parsed_response )
     end
 
     def post(url, body, return_parsed_response=true)
-      uri = URI.parse(Egnyte::Helper.encode_url(url))
-      request = Net::HTTP::Post.new(uri.request_uri)
+      uri = URI.parse(url)
+      request = Net::HTTP::Post.new( uri )
       request.body = body
       request.content_type = "application/json"
       resp = request(uri, request, return_parsed_response)
     end
 
     def login_post(url, body, return_parsed_response=true)
-      uri = URI.parse(Egnyte::Helper.encode_url(url))
-      request = Net::HTTP::Post.new(uri.request_uri)
+      uri = URI.parse(url)
+      request = Net::HTTP::Post.new( uri )
       request.body = body
       request.content_type = "application/x-www-form-urlencoded"
       resp = request(uri, request, return_parsed_response)
     end
 
     def patch(url, body, return_parsed_response=true)
-      uri = URI.parse(Egnyte::Helper.encode_url(url))
-      request = Net::HTTP::Patch.new(uri.request_uri)
+      uri = URI.parse(url)
+      request = Net::HTTP::Patch.new( uri )
       request.body = body
       request.content_type = "application/json"
       resp = request(uri, request, return_parsed_response)
     end
 
     def put(url, body, return_parsed_response=true)
-      uri = URI.parse(Egnyte::Helper.encode_url(url))
-      request = Net::HTTP::Put.new(uri.request_uri)
+      uri = URI.parse(url)
+      request = Net::HTTP::Put.new( uri )
       request.body = body
       request.content_type = "application/json"
       resp = request(uri, request, return_parsed_response)
     end
 
     def multipart_post(url, filename, data, return_parsed_response=true)
-      uri = URI.parse(Egnyte::Helper.encode_url(url))
+      uri = URI.parse(url)
 
-      request = Net::HTTP::Post.new(uri.request_uri)
+      request = Net::HTTP::Post.new( uri )
       request.body = data.read
       request.content_type = 'application/binary'
 
@@ -126,7 +126,7 @@ module Egnyte
     # perform a streaming download of a file
     # rather than in-memory.
     def streaming_download(url, opts)
-      uri = URI.parse(Egnyte::Helper.encode_url(url))
+      uri = URI.parse(url)
 
       params = {
         :content_length_proc => opts[:content_length_proc],
