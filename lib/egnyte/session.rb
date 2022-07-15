@@ -70,19 +70,19 @@ module Egnyte
     end
 
     def get(url, return_parsed_response=true)
-      uri = URI.parse(url)
+      uri = URI.parse(URI::Parser.new.escape(url))
       request = Net::HTTP::Get.new( uri )
       resp = request( uri, request, return_parsed_response )
     end
 
     def delete(url, return_parsed_response=true)
-      uri = URI.parse(url)
+      uri = URI.parse(URI::Parser.new.escape(url))
       request = Net::HTTP::Delete.new( uri )
       resp = request( uri, request, return_parsed_response )
     end
 
     def post(url, body, return_parsed_response=true)
-      uri = URI.parse(url)
+      uri = URI.parse(URI::Parser.new.escape(url))
       request = Net::HTTP::Post.new( uri )
       request.body = body
       request.content_type = "application/json"
@@ -90,7 +90,7 @@ module Egnyte
     end
 
     def login_post(url, body, return_parsed_response=true)
-      uri = URI.parse(url)
+      uri = URI.parse(URI::Parser.new.escape(url))
       request = Net::HTTP::Post.new( uri )
       request.body = body
       request.content_type = "application/x-www-form-urlencoded"
@@ -98,7 +98,7 @@ module Egnyte
     end
 
     def patch(url, body, return_parsed_response=true)
-      uri = URI.parse(url)
+      uri = URI.parse(URI::Parser.new.escape(url))
       request = Net::HTTP::Patch.new( uri )
       request.body = body
       request.content_type = "application/json"
@@ -106,7 +106,7 @@ module Egnyte
     end
 
     def put(url, body, return_parsed_response=true)
-      uri = URI.parse(url)
+      uri = URI.parse(URI::Parser.new.escape(url))
       request = Net::HTTP::Put.new( uri )
       request.body = body
       request.content_type = "application/json"
@@ -114,7 +114,7 @@ module Egnyte
     end
 
     def multipart_post(url, filename, data, return_parsed_response=true)
-      uri = URI.parse(url)
+      uri = URI.parse(URI::Parser.new.escape(url))
 
       request = Net::HTTP::Post.new( uri )
       request.body = data.read
@@ -126,7 +126,7 @@ module Egnyte
     # perform a streaming download of a file
     # rather than in-memory.
     def streaming_download(url, opts)
-      uri = URI.parse(url)
+      uri = URI.parse(URI::Parser.new.escape(url))
 
       params = {
         :content_length_proc => opts[:content_length_proc],
