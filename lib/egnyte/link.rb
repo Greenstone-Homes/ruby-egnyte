@@ -28,7 +28,7 @@ module Egnyte
 
     @@required_attributes = ['path', 'type', 'accessibility']
     attr_accessor :path, :type, :accessibility, :send_email, :recipients, :messages, :copy_me, :notify, :link_to_current, :expiry_date, :expiry_clicks, :add_filename, :creation_date
-    attr_reader :id
+    attr_reader :id, :url
 
     def initialize(session, params)
       @session = session
